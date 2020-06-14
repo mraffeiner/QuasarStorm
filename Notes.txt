@@ -5,19 +5,14 @@ TODO:
 Core:
 - Main Menu (Play, Settings)
 - Settings (Master Volume, Quality Presets)
-- Highscore (Personal Leaderboard)
 
 Features:
-- Quick swapping ships and bullets
-- Some bullet presets
-- Some ship presets
 - Customize bullets while playing
 
 Polish:
 - VFX
 - Audio
 - Projectile distance should be relative to player velocity (flying faster makes projectile range feel shorter)
-- Adjust movement to feel perfect
 - Add id to database objects
 - Fix physics stutter
 

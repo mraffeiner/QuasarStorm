@@ -817,12 +817,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'WASD - Move
 
-    Space / Right CTRL - Shoot
+    Space / LMB - Shoot
 
-    1 / 3 - Previous / Next
-    Ship
+    1 / 3 - Previous / Next Ship
 
-    Q / E - Previous / Next Weapon'
+    Q
+    / E - Previous / Next Weapon'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -891,10 +891,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0.0014425332, w: 0.58704853}
   m_textInfo:
     textComponent: {fileID: 629455782}
-    characterCount: 98
+    characterCount: 91
     spriteCount: 0
-    spaceCount: 24
-    wordCount: 20
+    spaceCount: 23
+    wordCount: 19
     linkCount: 0
     lineCount: 4
     pageCount: 1
@@ -1238,7 +1238,7 @@ MonoBehaviour:
     serializedVersion: 2
     key0: {r: 0.6886792, g: 0.016242431, b: 0.090210244, a: 1}
     key1: {r: 1, g: 0.91517913, b: 0, a: 1}
-    key2: {r: 0.3347023, g: 0.7830189, b: 0, a: 0}
+    key2: {r: 0.039215688, g: 0.65882355, b: 0, a: 0}
     key3: {r: 0.42631185, g: 1, b: 0, a: 0}
     key4: {r: 0.42631185, g: 1, b: 0, a: 0}
     key5: {r: 0.42631185, g: 1, b: 0, a: 0}
@@ -1343,7 +1343,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1440592687
 MonoBehaviour:
@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0

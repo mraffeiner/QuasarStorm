@@ -21,6 +21,12 @@ public class Asteroid : MonoBehaviour
 
     private void OnEnable() => checkDistance = StartCoroutine(CheckDistanceToPlayer());
 
+    private void Start()
+    {
+        if (playerTransform == null)
+            playerTransform = GameObject.FindWithTag("Player").transform;
+    }
+
     private IEnumerator CheckDistanceToPlayer()
     {
         while (playerTransform != null && Vector2.Distance(transform.position, playerTransform.position) < AsteroidSettings.simulationDistance)
