@@ -1,0 +1,17 @@
+=====    Quasar Storm    =====
+
+TODO:
+- Asteroid spawner
+
+Core:
+- Asteroid spawner (random direction / rotation speed / size / shape, object pooling, spawn when background moves?)
+- Main Menu (Play, Settings)
+- Settings (Master Volume, Quality Presets)
+- Highscore (Personal Leaderboard)
+
+Features:
+- More bullet types
+
+Polish:
+- Adjust movement to feel more controllable
+- Fix physics stutter (custom physics?)
