@@ -6,17 +6,18 @@ public class PlayerController : MonoBehaviour
 {
     public event Action<ProjectileObject, Transform> ShootEvent;
 
+    public Rigidbody2D Rigidbody { get; private set; }
+
     [SerializeField] private StarshipObject shipStats = null;
     [SerializeField] private ProjectileObject selectedProjectile = null;
     [SerializeField] private Transform projectileSpawn = null;
     [SerializeField] private float deadzone = .1f;
 
-    new private Rigidbody2D rigidbody;
     private float horizontalInput;
     private float verticalInput;
     private bool shoot;
 
-    private void Awake() => rigidbody = GetComponent<Rigidbody2D>();
+    private void Awake() => Rigidbody = GetComponent<Rigidbody2D>();
 
     private void Update()
     {
@@ -43,9 +44,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Move() => rigidbody.AddForce(transform.TransformDirection(Vector3.up * verticalInput) * shipStats.speed);
+    private void Move() => Rigidbody.AddForce(transform.TransformDirection(Vector3.up * verticalInput) * shipStats.speed);
 
-    private void Rotate() => rigidbody.AddTorque(-horizontalInput * shipStats.handling);
+    private void Rotate() => Rigidbody.AddTorque(-horizontalInput * shipStats.handling);
 
     private void Shoot() => ShootEvent?.Invoke(selectedProjectile, projectileSpawn);
 }

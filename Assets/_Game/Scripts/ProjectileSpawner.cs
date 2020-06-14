@@ -6,14 +6,9 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab = null;
 
     private PlayerController playerController;
-    private Rigidbody2D playerRigidbody;
     private List<GameObject> projectilePool = new List<GameObject>();
 
-    private void Awake()
-    {
-        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        playerRigidbody = playerController.GetComponent<Rigidbody2D>();
-    }
+    private void Awake() => playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
     private void OnEnable() => playerController.ShootEvent += OnShootEvent;
 
@@ -37,7 +32,7 @@ public class ProjectileSpawner : MonoBehaviour
         collider.isTrigger = true;
 
         projectileInstance.SetActive(true);
-        projectileRigidbody.velocity = playerRigidbody.velocity;
+        projectileRigidbody.velocity = playerController.Rigidbody.velocity;
 
         projectileComponent.StartProjectileAction();
     }

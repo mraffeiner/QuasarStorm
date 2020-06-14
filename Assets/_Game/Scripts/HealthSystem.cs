@@ -2,7 +2,7 @@
 
 public class HealthSystem : MonoBehaviour
 {
-    private int health = 1;
+    [SerializeField] private int health = 1;
 
     public void TakeDamage(int value)
     {

@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
         _collider = GetComponentInChildren<CircleCollider2D>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         //TODO: Handle collision distinction through layermasks
         if (other.transform.tag != "Player")
