@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Player
+  - Asteroids
+  - Projectiles
   - 
   - 
   - 
@@ -46,6 +46,12 @@ TagManager:
     locked: 0
   - name: Characters
     uniqueID: 1842203087
+    locked: 0
+  - name: Projectiles
+    uniqueID: 3633482931
+    locked: 0
+  - name: Asteroids
+    uniqueID: 1252980133
     locked: 0
   - name: Effects
     uniqueID: 2589932979

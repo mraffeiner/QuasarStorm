@@ -1,17 +1,28 @@
 =====    Quasar Storm    =====
 
 TODO:
-- Asteroid spawner
 
 Core:
-- Asteroid spawner (random direction / rotation speed / size / shape, object pooling, spawn when background moves?)
 - Main Menu (Play, Settings)
 - Settings (Master Volume, Quality Presets)
 - Highscore (Personal Leaderboard)
 
 Features:
-- More bullet types
+- Quick swapping ships and bullets
+- Some bullet presets
+- Some ship presets
+- Customize bullets while playing
 
 Polish:
-- Adjust movement to feel more controllable
-- Fix physics stutter (custom physics?)
+- VFX
+- Audio
+- Projectile distance should be relative to player velocity (flying faster makes projectile range feel shorter)
+- Adjust movement to feel perfect
+- Add id to database objects
+- Fix physics stutter
+
+Skills:
+- ScriptableObject-Architecture: Dynamic elements are implemented with ScriptableObjects, making it possible to easily change their properties during runtime (through both inspector and player input)
+- Object Pooling: nothing is destroyed, everything is reused as needed (eg. Projectiles get deactivated instead of destroyed, then redecorated and reactivated)
+- Event-Driven: Only UI elements and player input use Update() / FixedUpdate(), everything else is controlled through events
+- Custom Update Coroutines (regular checks like simulation distance use separate coroutines with custom intervals instead of running their code every frame)

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5135fec180292fd4b96d1ee87f9aed21, type: 3}
+  m_Name: Default
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 9b2e87cef86f5774ebb0dbf4680857c6, type: 3}
+  - {fileID: 21300000, guid: f236030c5a6360e47bb7ed8d9b5ead1c, type: 3}
+  - {fileID: 21300000, guid: 52dffa5c8fce80a4492b521458c07cb4, type: 3}
+  minSpawnsPerTile: 5
+  maxSpawnsPerTile: 10
+  minScale: 0.5
+  maxScale: 3
+  minMovementSpeed: -5
+  maxMovementSpeed: 5
+  minRotationSpeed: -50
+  maxRotationSpeed: 50

@@ -17,22 +17,27 @@ public class ProjectileSpawner : MonoBehaviour
     //TODO: Add target layermask to parameters
     private void OnShootEvent(ProjectileObject template, Transform spawnTransform)
     {
+        // Instantiate / Redecorate with template values and spawn transform
         var projectileInstance = GetInactiveProjectile();
         projectileInstance.transform.position = spawnTransform.position;
         projectileInstance.transform.rotation = spawnTransform.rotation;
-        projectileInstance.transform.localScale *= template.scale;
+        projectileInstance.transform.localScale = Vector2.one * template.scale;
 
         var projectileComponent = projectileInstance.GetComponent<Projectile>();
         projectileComponent.ProjectileStats = template;
 
-        var projectileRigidbody = projectileInstance.GetComponent<Rigidbody2D>();
+        // Set template sprite and add collider after to wrap around it automatically
+        projectileComponent.SpriteRenderer.sprite = template.sprite;
+        projectileComponent.SpriteRenderer.material = template.material;
+        if (projectileInstance.GetComponent<CircleCollider2D>() == null)
+        {
+            var collider = projectileInstance.AddComponent<CircleCollider2D>();
+            collider.isTrigger = true;
+        }
 
-        projectileInstance.GetComponent<SpriteRenderer>().sprite = template.sprite;
-        var collider = projectileInstance.AddComponent<CircleCollider2D>();
-        collider.isTrigger = true;
-
+        // Activate before setting velocity for physics to work properly
         projectileInstance.SetActive(true);
-        projectileRigidbody.velocity = playerController.Rigidbody.velocity;
+        projectileComponent.Rigidbody.velocity = playerController.Rigidbody.velocity;
 
         projectileComponent.StartProjectileAction();
     }
@@ -45,6 +50,7 @@ public class ProjectileSpawner : MonoBehaviour
 
         var newProjectile = Instantiate(projectilePrefab);
         newProjectile.SetActive(false);
+        projectilePool.Add(newProjectile);
 
         return newProjectile;
     }

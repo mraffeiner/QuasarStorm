@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5639767f4aef4846a2dd1b735e6ca4a, type: 3}
-  m_Name: StarshipBasic
+  m_Name: Slow
   m_EditorClassIdentifier: 
-  speed: 10
-  handling: 0.05
+  speed: 5
+  handling: 0.2

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017192524932301752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.121, z: 0}
+  m_LocalPosition: {x: 0, y: 0.155, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5396491274600464817}
@@ -56,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4510433025508455331}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.185, z: 0}
+  m_LocalPosition: {x: 0, y: -0.213, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 5396491274600464817}
@@ -4794,10 +4794,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5396491274600464817}
   - component: {fileID: 5396491274600464819}
-  - component: {fileID: 7001942901939385514}
+  - component: {fileID: 5356296658620107436}
   - component: {fileID: 4483520491787301980}
+  - component: {fileID: 7001942901939385514}
   - component: {fileID: 8497123861935212134}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4832,31 +4833,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e2301227ef3d6478e500197690139e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipStats: {fileID: 11400000, guid: 0b14df28274c8614d95da1474cb0db74, type: 2}
-  selectedProjectile: {fileID: 11400000, guid: 2fd8abf7e4e337546a49c77e61f86b3a, type: 2}
+  unlockedShips: {fileID: 11400000, guid: b478a6ba689c851489d1084eb22171b9, type: 2}
+  unlockedProjectiles: {fileID: 11400000, guid: 3ad445a4d613ee74c985fa266b00f0f5,
+    type: 2}
   projectileSpawn: {fileID: 41197856863072915}
   deadzone: 0.1
---- !u!50 &7001942901939385514
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!114 &5356296658620107436
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5396491274600464830}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0.5
-  m_AngularDrag: 1
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eef451c07a56324f8e6155ff9ad0a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: {fileID: 11400000, guid: 8bfe12244c16d55439a027c6508b0cc1, type: 2}
+  health: {fileID: 11400000, guid: 677347611a2f37141b78c4bb55566e20, type: 2}
+  damageVelocityThreshold: 5
 --- !u!212 &4483520491787301980
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4897,7 +4893,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: aeff7676a04e7b843916bfe7e8ea48c7, type: 3}
-  m_Color: {r: 1, g: 0.95380986, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.94832873, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4907,6 +4903,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &7001942901939385514
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5396491274600464830}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0.5
+  m_AngularDrag: 3
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!60 &8497123861935212134
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4924,7 +4941,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.25, y: 0.25}
+    oldSize: {x: 0.34133333, y: 0.34133333}
     newSize: {x: 10.24, y: 10.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
