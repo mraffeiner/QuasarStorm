@@ -7,10 +7,15 @@ public class Projectile : MonoBehaviour
 
     public ProjectileObject ProjectileStats { get; set; } = null;
 
+    private Rigidbody2D _rigidbody;
     private CircleCollider2D _collider;
     private bool _targetHit = false;
 
-    private void Awake() => _collider = GetComponentInChildren<CircleCollider2D>();
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _collider = GetComponentInChildren<CircleCollider2D>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,21 +35,18 @@ public class Projectile : MonoBehaviour
         var startPosition = transform.position;
         var elapsedTime = 0f;
 
-        while (!_targetHit && Vector3.Distance(transform.position, startPosition) < ProjectileStats.range)
+        _rigidbody.velocity += (Vector2)transform.up * ProjectileStats.speed;
+
+        while (!_targetHit && (elapsedTime < ProjectileStats.duration || Vector3.Distance(transform.position, startPosition) < ProjectileStats.range))
         {
             elapsedTime += Time.deltaTime;
-            transform.position += Time.fixedDeltaTime * transform.up * ProjectileStats.speed;
+
+            if (_rigidbody.velocity.magnitude > 0f && Vector3.Distance(transform.position, startPosition) >= ProjectileStats.range)
+                _rigidbody.velocity = Vector2.zero;
 
             yield return null;
         }
 
-        while (elapsedTime < ProjectileStats.duration)
-        {
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
-
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 }

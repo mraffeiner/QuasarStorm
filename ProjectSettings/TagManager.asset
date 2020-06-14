@@ -44,3 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Characters
+    uniqueID: 1842203087
+    locked: 0
+  - name: Effects
+    uniqueID: 2589932979
+    locked: 0
+  - name: UI
+    uniqueID: 3810241951
+    locked: 0
