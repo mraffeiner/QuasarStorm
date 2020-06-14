@@ -8,5 +8,5 @@ public class ScoreController : MonoBehaviour
 
     private void OnDisable() => HealthController.DeathEvent -= OnDeathEvent;
 
-    private void OnDeathEvent() => score.value += 1;
+    private void OnDeathEvent(GameObject deadObject) => score.value += 1 + (int)deadObject.transform.localScale.magnitude;
 }

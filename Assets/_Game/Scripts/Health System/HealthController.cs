@@ -4,7 +4,7 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     public static event Action PlayerDied;
-    public static event Action DeathEvent;
+    public static event Action<GameObject> DeathEvent;
 
     [SerializeField] private IntVariable maxHealth;
     [SerializeField] private IntVariable health;
@@ -46,7 +46,7 @@ public class HealthController : MonoBehaviour
         if (tag == "Player")
             PlayerDied?.Invoke();
         else
-            DeathEvent?.Invoke();
+            DeathEvent?.Invoke(this.gameObject);
 
         this.gameObject.SetActive(false);
     }
