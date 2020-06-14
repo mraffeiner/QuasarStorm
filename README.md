@@ -1,2 +1,2 @@
-# QuasarStorm
- Hypercasual Space Twin Stick Shooter (WebGL)
+# Solo Project: QuasarStorm (WebGL)
+ Hypercasual Asteroids clone with different ships and weapons that can be swapped at any time
