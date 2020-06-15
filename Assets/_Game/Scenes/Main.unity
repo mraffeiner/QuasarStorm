@@ -600,6 +600,7 @@ Transform:
   - {fileID: 757410894}
   - {fileID: 125020811}
   - {fileID: 1284267976}
+  - {fileID: 928019353}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1180,6 +1181,75 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &928019352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 928019353}
+  - component: {fileID: 928019354}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &928019353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928019352}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 436079928}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &928019354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928019352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95448218ca7a7ba44a33f59159356b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioElements:
+  - clipName: PlayerDeath
+    clip: {fileID: 8300000, guid: d1a6f0d8d68a35f4e9701950f8084832, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+  - clipName: BlackHole
+    clip: {fileID: 8300000, guid: e3cc7f105318cf143818efdc525c48b7, type: 3}
+    volume: 0.7
+    pitch: 0.3
+    source: {fileID: 0}
+  - clipName: BlasterSmall
+    clip: {fileID: 8300000, guid: 972bc4dd635f1564d92d5af4b1e1d55d, type: 3}
+    volume: 0.5
+    pitch: 2
+    source: {fileID: 0}
+  - clipName: BlasterBig
+    clip: {fileID: 8300000, guid: 8079dbb86e60b1e409654b5fc3bd16de, type: 3}
+    volume: 0.7
+    pitch: 7
+    source: {fileID: 0}
+  - clipName: AmbientRumble
+    clip: {fileID: 8300000, guid: 9a70a9e719a73574e934e187132445c8, type: 3}
+    volume: 0.3
+    pitch: 7
+    source: {fileID: 0}
 --- !u!1 &1266237744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,7 +1713,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8555034616378369253, guid: d59c2b2c500a3214e9c67dae18e033f8,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8555034616378369253, guid: d59c2b2c500a3214e9c67dae18e033f8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d59c2b2c500a3214e9c67dae18e033f8, type: 3}
 --- !u!1 &1755160682
 GameObject:

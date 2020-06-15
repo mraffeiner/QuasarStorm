@@ -5,6 +5,7 @@ public class ProjectileObject : ScriptableObject
 {
     public GameObject prefab;
     public Sprite sprite;
+    public AudioClip clip;
     public Material material;
     public float scale = 1f;
     public int damage = 1;
