@@ -1,4 +1,4 @@
-# Solo Project: QuasarStorm (WebGL)
+# Solo Project: QuasarStorm (WebGL) (Around 30 hours of work)
 
 #### Hypercasual Asteroids clone with different ships and weapons that can be swapped at any time
 
