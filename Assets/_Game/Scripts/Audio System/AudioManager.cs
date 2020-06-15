@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        var ambientRumble = audioElements.Find(x => x.clipName == "Music");
+        var ambientRumble = audioElements.Find(x => x.clipName == "BackgroundMusic");
         ambientRumble.source.loop = true;
         ambientRumble.source.Play();
     }
