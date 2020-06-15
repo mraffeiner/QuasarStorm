@@ -23,8 +23,9 @@
 - Main Menu (Play, Settings)
 - Settings (Master Volume, Quality Presets)
 
-> Features
+> Gameplay
 - Customize bullets while playing
+
 > Polish
 - VFX
 - Audio
