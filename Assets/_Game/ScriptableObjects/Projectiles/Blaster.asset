@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e812bc7045046f428bf140f330a0ede, type: 3}
-  m_Name: BlasterSmall
+  m_Name: Blaster
   m_EditorClassIdentifier: 
   prefab: {fileID: 3603330049085484467, guid: a33b16ccf31e1e5448e4d937bac23f07, type: 3}
   sprite: {fileID: 21300000, guid: 9473dc6fc3991cf429efe7488941e31f, type: 3}
