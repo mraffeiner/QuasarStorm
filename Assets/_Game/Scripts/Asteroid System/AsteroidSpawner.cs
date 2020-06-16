@@ -36,8 +36,10 @@ public class AsteroidSpawner : MonoBehaviour
             // Set random sprite and add collider after to wrap around it automatically
             var asteroidComponent = asteroidInstance.GetComponent<Asteroid>();
             asteroidComponent.SpriteRenderer.sprite = settings.sprites[Random.Range(0, settings.sprites.Count)];
-            if (asteroidInstance.GetComponent<PolygonCollider2D>() == null)
-                asteroidInstance.AddComponent<PolygonCollider2D>();
+            // Destroy and readd collider to size it accurately
+            if (asteroidInstance.GetComponent<PolygonCollider2D>() != null)
+                Destroy(asteroidInstance.GetComponent<PolygonCollider2D>());
+            asteroidInstance.AddComponent<PolygonCollider2D>();
 
             // Activate before setting velocity for physics to work properly
             asteroidInstance.SetActive(true);
