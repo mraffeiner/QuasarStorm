@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -14,6 +15,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform projectileSpawn = null;
     [SerializeField] private float deadzone = .1f;
 
+    [SerializeField] private RectTransform touchMoveRect = null;
+    [SerializeField] private RectTransform touchShootRect = null;
+    [SerializeField] private RectTransform touchSwapShipRect = null;
+    [SerializeField] private RectTransform touchSwapWeaponRect = null;
+
     private ShipObject currentShip;
     private ProjectileObject selectedProjectile;
 
@@ -21,6 +27,11 @@ public class PlayerController : MonoBehaviour
     private float verticalInput;
     private bool shoot;
     private float shootCooldown;
+
+    private Vector2 touchStartPosition;
+    private Vector2 touchEndPosition;
+    private Vector2 touchDragVector;
+    private bool touchComplete;
 
     private void Awake() => Rigidbody = GetComponent<Rigidbody2D>();
 
@@ -31,6 +42,67 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
+    {
+#if UNITY_IOS || UNITY_ANDROID
+        ReadTouchInput();
+#else
+        ReadKeyboardInput();
+#endif
+        if (shootCooldown > 0)
+            shootCooldown -= Time.deltaTime;
+    }
+
+    private void ReadTouchInput()
+    {
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            var touch = Input.GetTouch(i);
+            // Set touch information
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    touchComplete = false;
+                    touchStartPosition = touch.position;
+                    break;
+                case TouchPhase.Moved:
+                    touchDragVector = touch.position - touchStartPosition;
+                    break;
+                case TouchPhase.Ended:
+                    touchEndPosition = touch.position;
+                    touchDragVector = touchEndPosition - touchStartPosition;
+                    touchComplete = true;
+                    break;
+            }
+            // Check which part of the screen the touch input is in
+            if (RectTransformUtility.RectangleContainsScreenPoint(touchMoveRect, touch.position, null))
+            {
+                horizontalInput = touchComplete ? 0 : touchDragVector.normalized.x;
+                verticalInput = touchComplete ? 0 : touchDragVector.normalized.y;
+            }
+            else if (RectTransformUtility.RectangleContainsScreenPoint(touchShootRect, touch.position, null))
+            {
+                // Shoot
+                if (!shoot && shootCooldown <= 0)
+                    shoot = !touchComplete;
+            }
+            else if (RectTransformUtility.RectangleContainsScreenPoint(touchSwapShipRect, touch.position, null))
+            {
+                // Swap Ship
+                if (touchComplete)
+                    currentShip = NextInList(currentShip, unlockedShips.objects);
+            }
+            else if (RectTransformUtility.RectangleContainsScreenPoint(touchSwapWeaponRect, touch.position, null))
+            {
+                // Swap Weapon
+                if (touchComplete)
+                    selectedProjectile = NextInList(selectedProjectile, unlockedProjectiles.objects);
+            }
+        }
+
+        touchComplete = false;
+    }
+
+    private void ReadKeyboardInput()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
@@ -47,9 +119,6 @@ public class PlayerController : MonoBehaviour
 
         if (!shoot && shootCooldown <= 0)
             shoot = Input.GetButton("Shoot");
-
-        if (shootCooldown > 0)
-            shootCooldown -= Time.deltaTime;
     }
 
     private void FixedUpdate()
