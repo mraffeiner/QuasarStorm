@@ -6,6 +6,14 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    private class TouchInfo
+    {
+        public Vector2 touchStartPosition;
+        public Vector2 touchEndPosition;
+        public Vector2 touchDragVector;
+        public bool touchComplete;
+    }
+
     public event Action<ProjectileObject, Transform> ShootEvent;
 
     public Rigidbody2D Rigidbody { get; private set; }
@@ -28,10 +36,7 @@ public class PlayerController : MonoBehaviour
     private bool shoot;
     private float shootCooldown;
 
-    private Vector2 touchStartPosition;
-    private Vector2 touchEndPosition;
-    private Vector2 touchDragVector;
-    private bool touchComplete;
+    private List<TouchInfo> touchInfos = new List<TouchInfo>();
 
     private void Awake() => Rigidbody = GetComponent<Rigidbody2D>();
 
@@ -57,49 +62,52 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < Input.touchCount; i++)
         {
             var touch = Input.GetTouch(i);
+            if (touchInfos.Count <= i)
+                touchInfos.Add(new TouchInfo());
+
             // Set touch information
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    touchComplete = false;
-                    touchStartPosition = touch.position;
+                    touchInfos[i].touchComplete = false;
+                    touchInfos[i].touchStartPosition = touch.position;
                     break;
                 case TouchPhase.Moved:
-                    touchDragVector = touch.position - touchStartPosition;
+                    touchInfos[i].touchDragVector = touch.position - touchInfos[i].touchStartPosition;
                     break;
                 case TouchPhase.Ended:
-                    touchEndPosition = touch.position;
-                    touchDragVector = touchEndPosition - touchStartPosition;
-                    touchComplete = true;
+                    touchInfos[i].touchEndPosition = touch.position;
+                    touchInfos[i].touchDragVector = touchInfos[i].touchEndPosition - touchInfos[i].touchStartPosition;
+                    touchInfos[i].touchComplete = true;
                     break;
             }
             // Check which part of the screen the touch input is in
             if (RectTransformUtility.RectangleContainsScreenPoint(touchMoveRect, touch.position, null))
             {
-                horizontalInput = touchComplete ? 0 : touchDragVector.normalized.x;
-                verticalInput = touchComplete ? 0 : touchDragVector.normalized.y;
+                horizontalInput = touchInfos[i].touchComplete ? 0 : touchInfos[i].touchDragVector.normalized.x;
+                verticalInput = touchInfos[i].touchComplete ? 0 : touchInfos[i].touchDragVector.normalized.y;
             }
             else if (RectTransformUtility.RectangleContainsScreenPoint(touchShootRect, touch.position, null))
             {
                 // Shoot
                 if (!shoot && shootCooldown <= 0)
-                    shoot = !touchComplete;
+                    shoot = !touchInfos[i].touchComplete;
             }
             else if (RectTransformUtility.RectangleContainsScreenPoint(touchSwapShipRect, touch.position, null))
             {
                 // Swap Ship
-                if (touchComplete)
+                if (touchInfos[i].touchComplete)
                     currentShip = NextInList(currentShip, unlockedShips.objects);
             }
             else if (RectTransformUtility.RectangleContainsScreenPoint(touchSwapWeaponRect, touch.position, null))
             {
                 // Swap Weapon
-                if (touchComplete)
+                if (touchInfos[i].touchComplete)
                     selectedProjectile = NextInList(selectedProjectile, unlockedProjectiles.objects);
             }
-        }
 
-        touchComplete = false;
+            touchInfos[i].touchComplete = false;
+        }
     }
 
     private void ReadKeyboardInput()
