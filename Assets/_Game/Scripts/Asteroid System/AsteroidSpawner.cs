@@ -56,7 +56,7 @@ public class AsteroidSpawner : MonoBehaviour
         if (inactiveAsteroid != null)
             return inactiveAsteroid;
 
-        var newAsteroid = Instantiate(asteroidPrefab);
+        var newAsteroid = Instantiate(asteroidPrefab, transform);
         newAsteroid.SetActive(false);
         asteroidPool.Add(newAsteroid);
 

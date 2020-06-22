@@ -59,6 +59,7 @@ public class TileManager : MonoBehaviour
     {
         // Create new game object with given parameters
         var newTile = new GameObject(name);
+        newTile.transform.parent = transform;
         newTile.transform.position = new Vector2(-xPosition, yPosition);
 
         // Add sprite renderer with defined settings

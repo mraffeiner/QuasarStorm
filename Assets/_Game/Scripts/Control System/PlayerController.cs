@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -48,11 +47,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_IOS || UNITY_ANDROID
-        ReadTouchInput();
-#else
-        ReadKeyboardInput();
-#endif
+        if (MobileDetection.isMobile())
+            ReadTouchInput();
+        else
+            ReadKeyboardInput();
+
         if (shootCooldown > 0)
             shootCooldown -= Time.deltaTime;
     }

@@ -48,7 +48,7 @@ public class ProjectileSpawner : MonoBehaviour
         if (inactiveProjectile != null)
             return inactiveProjectile;
 
-        var newProjectile = Instantiate(projectilePrefab);
+        var newProjectile = Instantiate(projectilePrefab, transform);
         newProjectile.SetActive(false);
         projectilePool.Add(newProjectile);
 

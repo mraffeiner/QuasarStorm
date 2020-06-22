@@ -3,19 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject playButton = null;
-
-    private void Start() => Cursor.visible = false;
+    [SerializeField] private GameObject menuParent = null;
 
     private void OnEnable() => HealthController.PlayerDied += OnPlayerDied;
 
-    private void OnDisable() => HealthController.PlayerDied -= OnPlayerDied;
+    private void Start() => SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
 
-    public void Restart() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    private void OnDisable() => HealthController.PlayerDied -= OnPlayerDied;
 
     private void OnPlayerDied()
     {
+        menuParent.SetActive(true);
         Cursor.visible = true;
-        playButton.SetActive(true);
     }
 }
