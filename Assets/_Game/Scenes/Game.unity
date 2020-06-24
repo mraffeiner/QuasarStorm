@@ -273,9 +273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e069aa8bebcc9804f9211a765003960d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 6d62b74b44998b645a91c0f5dff21723, type: 2}
-  asteroidPrefab: {fileID: 8819709377109789655, guid: 5cb2e80024fcf10458dc9e13999a318e,
+  objectPrefab: {fileID: 8819709377109789655, guid: 5cb2e80024fcf10458dc9e13999a318e,
     type: 3}
+  settings: {fileID: 11400000, guid: 6d62b74b44998b645a91c0f5dff21723, type: 2}
 --- !u!4 &270438714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5396491274600464817, guid: d59c2b2c500a3214e9c67dae18e033f8,
@@ -923,7 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491f7415963429b4fb02286e4eeb6179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 3603330049085484467, guid: a33b16ccf31e1e5448e4d937bac23f07,
+  objectPrefab: {fileID: 3603330049085484467, guid: a33b16ccf31e1e5448e4d937bac23f07,
     type: 3}
 --- !u!4 &757410894
 Transform:

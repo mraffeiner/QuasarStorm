@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AsteroidSpawner : MonoBehaviour
+public class AsteroidSpawner : ObjectPoolBase
 {
     [SerializeField] private AsteroidSettings settings = null;
-    [SerializeField] private GameObject asteroidPrefab = null;
 
     private TileManager tileSpawner;
-    private List<GameObject> asteroidPool = new List<GameObject>();
 
     private void Awake() => tileSpawner = FindObjectOfType<TileManager>();
 
@@ -29,13 +26,14 @@ public class AsteroidSpawner : MonoBehaviour
             var spawnPosition = (Vector2)tile.transform.position + randomPointInBounds;
 
             // Instantiate / Redecorate with random values depending on min / max settings
-            var asteroidInstance = GetInactiveAsteroid();
+            var asteroidInstance = GetInactiveFromPool();
             asteroidInstance.transform.position = spawnPosition;
             asteroidInstance.transform.localScale = Vector2.one * Random.Range(settings.minScale, settings.maxScale);
 
             // Set random sprite and add collider after to wrap around it automatically
             var asteroidComponent = asteroidInstance.GetComponent<Asteroid>();
             asteroidComponent.SpriteRenderer.sprite = settings.sprites[Random.Range(0, settings.sprites.Count)];
+
             // Destroy and readd collider to size it accurately
             if (asteroidInstance.GetComponent<PolygonCollider2D>() != null)
                 Destroy(asteroidInstance.GetComponent<PolygonCollider2D>());
@@ -48,18 +46,5 @@ public class AsteroidSpawner : MonoBehaviour
                 Random.Range(settings.minMovementSpeed, settings.maxMovementSpeed));    // y
             asteroidComponent.Rigidbody.angularVelocity = Random.Range(settings.minRotationSpeed, settings.maxRotationSpeed);
         }
-    }
-
-    private GameObject GetInactiveAsteroid()
-    {
-        var inactiveAsteroid = asteroidPool.Find(x => !x.activeSelf);
-        if (inactiveAsteroid != null)
-            return inactiveAsteroid;
-
-        var newAsteroid = Instantiate(asteroidPrefab, transform);
-        newAsteroid.SetActive(false);
-        asteroidPool.Add(newAsteroid);
-
-        return newAsteroid;
     }
 }
