@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public event Action<ProjectileObject, Transform> ShootEvent;
 
     public Rigidbody2D Rigidbody { get; private set; }
+    public SpriteRenderer SpriteRenderer { get; private set; }
 
     [SerializeField] private ShipDatabase unlockedShips = null;
     [SerializeField] private ProjectileDatabase unlockedProjectiles = null;
@@ -24,11 +25,17 @@ public class PlayerController : MonoBehaviour
     private ProjectileObject currentWeapon;
     private float shootCooldown;
 
-    private void Awake() => Rigidbody = GetComponent<Rigidbody2D>();
+    private void Awake()
+    {
+        Rigidbody = GetComponent<Rigidbody2D>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     private void Start()
     {
         currentShip = unlockedShips.objects[0];
+        SpriteRenderer.color = currentShip.color;
+
         currentWeapon = unlockedProjectiles.objects[0];
 
         if (MobileDetection.isMobile())
@@ -59,17 +66,30 @@ public class PlayerController : MonoBehaviour
             shootCooldown = currentWeapon.cooldown;
         }
 
+        if (controlModule.cycleShip != 0)
+            CycleShip();
+        if (controlModule.cycleWeapon != 0)
+            CycleWeapon();
+
+        controlModule.ClearInput();
+    }
+
+    private void CycleShip()
+    {
         if (controlModule.cycleShip > 0)
             currentShip = NextInList(currentShip, unlockedShips.objects);
         if (controlModule.cycleShip < 0)
             currentShip = PreviousInList(currentShip, unlockedShips.objects);
 
+        SpriteRenderer.color = currentShip.color;
+    }
+
+    private void CycleWeapon()
+    {
         if (controlModule.cycleWeapon > 0)
             currentWeapon = NextInList(currentWeapon, unlockedProjectiles.objects);
         if (controlModule.cycleWeapon < 0)
             currentWeapon = PreviousInList(currentWeapon, unlockedProjectiles.objects);
-
-        controlModule.ClearInput();
     }
 
     private void Move() => Rigidbody.AddForce(transform.TransformDirection(Vector3.up * controlModule.verticalInput) * currentShip.speed);
