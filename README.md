@@ -1,6 +1,6 @@
-# Solo Project: QuasarStorm (WebGL) (About 30 hours of work)
+# Solo Project: QuasarStorm (WebGL) (About 40 hours of work)
 
-#### Hypercasual Asteroids clone with different ships and weapons that can be swapped at any time
+#### Hypercasual Asteroids clone with realistic physics, different ships and weapons that can be swapped at any time and unrestricted movement
 Playable at https://tastiham.itch.io/quasarstorm?secret=yzMrgMqEazAioQYhdCn68fuPY
 
 ### Credits
@@ -12,16 +12,16 @@ Background Texture - n4 @ https://opengameart.org/node/25677
 ## Featured Coding Skills
 
 > ScriptableObject-Architecture
-- Dynamic elements are implemented using ScriptableObjects, making it possible to easily change their properties during runtime (through both inspector and player input)
+- Dynamic elements are implemented using ScriptableObjects, enabling the manipulation of eg. ship or weapon properties at runtime (through inspector / input)
 	
 > Object Pooling
-- nothing is destroyed, everything is reused as needed (eg. Projectiles get deactivated instead of destroyed, then redecorated and reactivated)
+- None of the instantiated objects are destroyed, but instead reused as needed through deactivation, redecoration and reactivation.
 	
 > Event-Driven
-- Only UI elements and player input use Update() / FixedUpdate(), everything else is controlled through events
+- Flow of game logic is controlled primarily through events instead of update loops
 	
 > Custom Update Coroutines 
-- regular checks like simulation distance use separate coroutines with custom intervals instead of running the code every frame
+- Taxing calculations like simulation distance checks use separate coroutines with custom intervals to prevent running code every frame
 
 
 ## Feature Backlog
@@ -36,5 +36,5 @@ Background Texture - n4 @ https://opengameart.org/node/25677
 > Polish
 - VFX
 - Audio
-- Projectile distance should be relative to player velocity
-- Fix physics stutter
+- Projectile max distance should be relative to player velocity
+- Physics should not stutter when applying linear / angular drag
