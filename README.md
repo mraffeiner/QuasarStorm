@@ -9,7 +9,7 @@ Background Music: Kalte Ohren (septahelix remix) by septahelix (c) copyright 201
 
 Background Texture - n4 @ https://opengameart.org/node/25677
 
-## Featured Coding Skills
+## Featured Skills
 
 > ScriptableObject-Architecture
 - Dynamic elements are implemented using ScriptableObjects, enabling the manipulation of eg. ship or weapon properties at runtime (through inspector / input)
@@ -23,18 +23,19 @@ Background Texture - n4 @ https://opengameart.org/node/25677
 > Custom Update Coroutines 
 - Taxing calculations like simulation distance checks use separate coroutines with custom intervals to prevent running code every frame
 
+> Visual Polish
+- Graphics use Unity URP, Post Processing and Custom Shaders created in ShaderGraph
+
 
 ## Feature Backlog
 
 > Core
-- Main Menu (Play, Settings)
 - Settings (Master Volume, Quality Presets)
 
 > Gameplay
 - Customize bullets while playing
 
 > Polish
-- VFX
-- Audio
+- General polish (UX / VFX / SFX)
 - Projectile max distance should be relative to player velocity
 - Physics should not stutter when applying linear / angular drag
