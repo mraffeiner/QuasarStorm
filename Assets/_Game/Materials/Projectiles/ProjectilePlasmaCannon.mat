@@ -81,6 +81,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_C361D19F: {r: 0.7970546, g: 1.2069621, b: 3.9296644, a: 1}
+    - GlowColor: {r: 2.164706, g: 6.9333334, b: 8, a: 1}
     - _Color: {r: 0, g: 1, b: 0.74731255, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

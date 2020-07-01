@@ -33,15 +33,20 @@ public class AudioManager : MonoBehaviour
     {
         HealthController.PlayerDied += OnPlayerDied;
         playerController.ShootEvent += OnShootEvent;
+        HealthController.DeathEvent += OnDeathEvent;
     }
 
     private void OnDisable()
     {
         HealthController.PlayerDied -= OnPlayerDied;
         playerController.ShootEvent -= OnShootEvent;
+        HealthController.DeathEvent -= OnDeathEvent;
     }
 
-    private void OnPlayerDied() => audioElements.Find(x => x.clipName == "PlayerDeath").source.Play();
+    private void OnPlayerDied() => audioElements.Find(x => x.clipName == "PlayerDeath")?.source.Play();
 
     private void OnShootEvent(ProjectileObject projectile, Transform spawn) => audioElements.Find(x => x.clip == projectile.clip)?.source.Play();
+
+    //TODO: Make this genereric by adding a death clip to health controller or sth like that
+    private void OnDeathEvent(GameObject deadObject) => audioElements.Find(x => x.clipName == "AsteroidExplosion")?.source.Play();
 }

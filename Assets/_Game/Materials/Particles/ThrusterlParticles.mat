@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TrailGlowing
+  m_Name: ThrusterlParticles
   m_Shader: {fileID: -6465566751694194690, guid: c85a6884241928f4d8c06164caaeb6ec,
     type: 3}
   m_ShaderKeywords: 
