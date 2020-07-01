@@ -3,7 +3,7 @@ using static UnityEngine.ParticleSystem;
 
 public class ParticleEmitter : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem burstParticles;
+    [SerializeField] private ParticleSystem burstParticles = null;
 
     private GameObject player;
     private MainModule burstMainModule;
