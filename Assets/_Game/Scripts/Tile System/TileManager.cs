@@ -7,6 +7,7 @@ public class TileManager : MonoBehaviour
     public event Action<GameObject> TilePlaced;
 
     [SerializeField] private Sprite sprite = null;
+    [SerializeField] private Material material = null;
     [SerializeField] private Color color = new Color(255f, 255f, 255f, 50f);
 
     // Predefine boolean properties to make actual code more readable
@@ -66,6 +67,7 @@ public class TileManager : MonoBehaviour
         var renderer = newTile.AddComponent<SpriteRenderer>();
         renderer.sortingLayerName = "Background";
         renderer.sprite = sprite;
+        renderer.material = material;
         renderer.color = color;
 
         TilePlaced?.Invoke(newTile);
