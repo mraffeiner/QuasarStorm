@@ -1,4 +1,4 @@
-# Solo Project: QuasarStorm (WebGL) (About 40 hours of work)
+# Solo Project: QuasarStorm (WebGL)
 
 #### Hypercasual Asteroids clone with realistic physics, different ships and weapons that can be swapped at any time and unrestricted movement
 Playable at https://tastiham.itch.io/quasarstorm?secret=yzMrgMqEazAioQYhdCn68fuPY
