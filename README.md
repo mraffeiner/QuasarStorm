@@ -25,17 +25,3 @@ Background Texture - n4 @ https://opengameart.org/node/25677
 
 > Visual Polish
 - Graphics use Unity URP, Post Processing and Custom Shaders created in ShaderGraph
-
-
-## Feature Backlog
-
-> Core
-- Settings (Master Volume, Quality Presets)
-
-> Gameplay
-- Customize bullets while playing
-
-> Polish
-- General polish (UX / VFX / SFX)
-- Projectile max distance should be relative to player velocity
-- Physics should not stutter when applying linear / angular drag
